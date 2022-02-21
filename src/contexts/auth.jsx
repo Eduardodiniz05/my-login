@@ -1,4 +1,4 @@
-import react, { useState, createContext } from 'react';
+import React, { useState, createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export const AuthContext = createContext();

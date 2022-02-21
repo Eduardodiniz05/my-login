@@ -13,11 +13,12 @@ import { AuthProvider, AuthContext } from "./contexts/auth"
 
 const AppRoutes = () => {
     const Private = ({children}) => {
-      const  { autenthicated } = useContext(AuthContext);
+      const  { authenticated } = useContext(AuthContext);
 
-      if(!autenthicated) {
+      if(!authenticated) {
           return <Navigate to='/login' />
       }
+      return children;
     }
 
     return (
@@ -25,7 +26,7 @@ const AppRoutes = () => {
             <AuthProvider>
                 <Routes>
                     <Route exact path="/login" element={<LoginPage />} />
-                    <Route exact path="/" element={<private> <HomePage /> </private>} />
+                    <Route exact path="/" element={<Private> <HomePage /> </Private>} />
                 </Routes>
             </AuthProvider>
         </Router>
