@@ -1,15 +1,18 @@
 import React from "react";
 import './styles.css';
-import { useState } from 'react';
-import { clear } from "@testing-library/user-event/dist/clear";
+import { useState, useContext } from 'react';
+import { AuthContext } from "../../contexts/auth";
 
 const LoginPage = () => {
+    const {authenticated, login} = useContext(AuthContext);
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState('');
     const handleSubmit = (e) => {
         //interceptando o browser de fazer a ação padrão de atualiza pag
         e.preventDefault();
-        console.log('submit', {email, password})
+        console.log('submit', {email, password});
+        login(email, password); //integração com o contexto / api
     };
     return (
         <div id="login">
